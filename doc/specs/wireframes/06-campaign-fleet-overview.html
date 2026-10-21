@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Campaign &amp; Fleet Overview</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <div class="title">Server Refresh Automation</div>
+      <div class="spacer"></div>
+      <span class="btn">Refresh candidate detection</span>
+      <span class="btn solid">+ New campaign</span>
+    </div>
+    <div class="meta">
+      <label class="field">Environment
+        <span class="control">Staging ▾</span>
+      </label>
+      <span class="muted">Database: hosting_db (Staging) · scoped automatically, no environment filter needed</span>
+    </div>
+    <div class="banner">
+      ami-0abc123 verified in Development on 2026-10-18 (see AMI verification runbook). Ready to use as a campaign target in any environment.
+    </div>
+    <div class="banner warn">
+      New AWS Windows AMI notification received 2026-10-20 (ami-0def456). Not yet verified — a rollout campaign cannot be created with this AMI until verification completes.
+      <div class="spacer"></div>
+      <span class="btn solid">Start verification campaign</span>
+    </div>
+    <div class="section-head">Active campaigns · Staging</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th>AMI</th>
+          <th>Enabled</th>
+          <th>Batch groups</th>
+          <th>Progress</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>campaign-stg-2026w43</td>
+          <td>ami-0abc123</td>
+          <td><span class="mark">Yes</span></td>
+          <td>3 (wave-a, wave-b, wave-c)</td>
+          <td>14 succeeded · 2 failed · 1 in progress · 25 pending</td>
+          <td><span class="btn solid">Open</span></td>
+        </tr>
+        <tr>
+          <td>campaign-stg-2026w41</td>
+          <td>ami-0prior789</td>
+          <td><span class="mark">No</span></td>
+          <td>2</td>
+          <td>Completed — 18 succeeded · 0 failed</td>
+          <td><span class="btn">Open</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="filters">
+      <label class="field">Status <span class="control">All ▾</span></label>
+      <label class="field">Search <span class="control wide">Search servers…</span></label>
+      <div class="spacer"></div>
+      <span>42 candidates detected for ami-0abc123</span>
+    </div>
+    <div class="section-head">Detected candidates · Staging · automatically derived</div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Server name</th>
+          <th>Status</th>
+          <th>Instance ID</th>
+          <th>Current image (live EC2 lookup)</th>
+          <th>In a campaign?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>☑</td>
+          <td>stg-web-014</td>
+          <td>Created</td>
+          <td>i-0ccc111</td>
+          <td>ami-old999 (≠ ami-0abc123)</td>
+          <td><span class="mark">campaign-stg-2026w43 / wave-a</span></td>
+        </tr>
+        <tr>
+          <td>☑</td>
+          <td>stg-web-015</td>
+          <td>Created</td>
+          <td>i-0ccc112</td>
+          <td>ami-old999 (≠ ami-0abc123)</td>
+          <td><span class="mark">Not yet assigned</span></td>
+        </tr>
+        <tr>
+          <td>☐</td>
+          <td>stg-web-016</td>
+          <td>FailingOver</td>
+          <td>i-0ccc113</td>
+          <td>ami-old999 (≠ ami-0abc123)</td>
+          <td class="muted">Excluded — status not refresh-eligible</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="legend">
+      <span><b>Candidate rule</b> — status Created or FailingOverFailed, is_active, and live EC2 ImageId ≠ campaign AMI</span>
+      <span><b>No attribute grouping</b> — tier / dedicated_group_name / customer_id are not used; batches are chunked mechanically</span>
+      <span>Selected candidates can be added to a new or existing batch group</span>
+    </div>
+    <div class="actions">
+      <span class="btn">Add selected to batch group…</span>
+      <span class="hint">2 of 42 candidates selected</span>
+    </div>
+  </div>
+</body>
+</html>

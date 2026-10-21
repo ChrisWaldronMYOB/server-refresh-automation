@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plan Detail</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <span class="btn">← Back</span>
+      <div class="title">Plan plan-stg-8841</div>
+      <div class="spacer"></div>
+      <span>Status: <b>Ready</b> (test passed)</span>
+    </div>
+    <div class="meta">
+      <span>AMI <b>ami-0abc123</b> · Windows 2022 patch</span>
+      <span>releaseType <b>patch</b></span>
+      <span>Environment: <b>Staging</b></span>
+      <span>Predecessor: <b>plan-dev-8830 Ready</b></span>
+    </div>
+    <div class="banner ok">
+      Test acceptance passed. Tester ran in Staging only (this env). Rollout policy: <b>auto</b> · rule <b>staging-auto-after-cert</b> · policy v3.
+      Production Certify is now allowed for this AMI (P1).
+    </div>
+    <div class="section-head">Verification · allowlist (configured) · 2 / 2 passed</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Server</th>
+          <th>Role</th>
+          <th>Refresh</th>
+          <th>Source status</th>
+          <th>Site health</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>stg-web-canary-01</td>
+          <td>Test allowlist</td>
+          <td>Succeeded</td>
+          <td>Deleted</td>
+          <td>18 / 18 pass</td>
+          <td><span class="mark">Pass</span></td>
+        </tr>
+        <tr>
+          <td>stg-web-canary-02</td>
+          <td>Test allowlist</td>
+          <td>Succeeded</td>
+          <td>Deleted</td>
+          <td>6 / 6 pass</td>
+          <td><span class="mark">Pass</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">Fleet targets · 9 Clear / 1 Blocked · Starter may begin (auto)</div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Server name</th>
+          <th>Status</th>
+          <th>Current image</th>
+          <th>Contention</th>
+          <th>Reasons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>☑</td>
+          <td>stg-web-014</td>
+          <td>Created</td>
+          <td>ami-old</td>
+          <td><span class="mark">Clear</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>☐</td>
+          <td>stg-web-022</td>
+          <td>Created</td>
+          <td>ami-old</td>
+          <td><span class="mark">Blocked</span></td>
+          <td>Site demo-erp is Migrating</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="actions">
+      <span class="btn disabled">Accept plan</span>
+      <span class="btn">Reject plan</span>
+      <span class="btn">Schedule…</span>
+      <span class="btn">Force human</span>
+      <span class="hint">Accept disabled: operationMode is auto; Starter will run Clear fleet</span>
+    </div>
+  </div>
+</body>
+</html>

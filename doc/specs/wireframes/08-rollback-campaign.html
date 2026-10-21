@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Failed Servers — Create Rollback Campaign</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <span class="btn">← Back</span>
+      <div class="title">campaign-stg-2026w43 · Failed servers</div>
+      <div class="spacer"></div>
+      <span>2 failed of 42</span>
+    </div>
+    <div class="meta">
+      <span>AMI <b>ami-0abc123</b></span>
+      <span>Environment: <b>Staging</b></span>
+    </div>
+    <div class="section-head">Failed servers</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Server</th>
+          <th>Result</th>
+          <th>Failure reason</th>
+          <th>Prior AMI (captured before refresh)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>stg-web-015</td>
+          <td><span class="mark">failed</span></td>
+          <td>TimedOut</td>
+          <td>ami-old999</td>
+        </tr>
+        <tr>
+          <td>stg-web-031</td>
+          <td><span class="mark">failed</span></td>
+          <td>HealthCheckFailed</td>
+          <td>ami-old777</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="banner warn">
+      2 distinct prior AMIs found among failed servers. Rollback cannot be a single campaign — the operator action below creates one rollback campaign per distinct prior AMI.
+    </div>
+    <div class="section-head">Proposed rollback campaigns (not yet created)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Proposed campaign</th>
+          <th>Target AMI</th>
+          <th>Servers</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>campaign-stg-2026w43-rollback-1</td>
+          <td>ami-old999</td>
+          <td>stg-web-015</td>
+        </tr>
+        <tr>
+          <td>campaign-stg-2026w43-rollback-2</td>
+          <td>ami-old777</td>
+          <td>stg-web-031</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">
+      Rollback is never automatic. Creating these campaigns only stages them — review and enable each one from the campaign editor, the same as any other campaign, before any refresh is attempted.
+    </div>
+    <div class="actions">
+      <span class="btn solid">Create rollback campaign(s)</span>
+      <span class="hint">Opens the campaign editor for each one, pre-filled and disabled until you enable it</span>
+    </div>
+  </div>
+</body>
+</html>

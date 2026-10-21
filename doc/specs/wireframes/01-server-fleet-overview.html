@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Server Fleet Overview</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <div class="title">Server Refresh Automation</div>
+      <div class="spacer"></div>
+      <span class="btn">Refresh inventory</span>
+    </div>
+    <div class="meta">
+      <label class="field">Environment
+        <span class="control">Staging ▾</span>
+      </label>
+      <label class="field">LatestAMI
+        <span class="control wide">ami-0abc123 · Windows 2022 patch</span>
+      </label>
+      <span>releaseType <b>patch</b></span>
+    </div>
+    <div class="policy-row">
+      <span><b>Test policy</b> (where Tester runs before Ready)</span>
+      <span class="radio">DEV</span>
+      <span class="radio">Staging</span>
+      <span class="radio on">DEV and Staging</span>
+      <span class="muted">v3 · last changed by @operator 2026-10-08 21:04 UTC</span>
+      <div class="spacer"></div>
+      <span class="btn">Save test policy</span>
+    </div>
+    <div class="policy-row">
+      <span><b>AMI source policy</b> (how signal A arrives)</span>
+      <span class="radio on">SNS Windows update</span>
+      <span class="radio">+ private AMI alerts</span>
+      <span class="muted">ec2-windows-ami-update · us-east-1 · 801119661308 · filters Windows_Server-2022-* / 2025-* · ap-southeast-2</span>
+      <div class="spacer"></div>
+      <span class="btn">View source policy</span>
+    </div>
+    <div class="banner">
+      Promotion: DEV plan <b>Ready</b> for ami-0abc123 (patch) → Staging <b>Verifying</b>.
+      Production Certify is blocked until Staging is Ready.
+    </div>
+    <div class="banner warn">
+      Held candidate: AWS Windows_Server-2025-English-Full-Base-* classified <b>major</b>.
+      Certify is blocked until Acumatica certification is recorded. SNS will not auto-pick this AMI.
+    </div>
+    <div class="filters">
+      <label class="field">Status <span class="control">All ▾</span></label>
+      <label class="field">Contention <span class="control">All ▾</span></label>
+      <label class="field">Role <span class="control">All ▾</span></label>
+      <label class="field">Search <span class="control wide">Search servers…</span></label>
+      <div class="spacer"></div>
+      <span class="btn">Plans (2)</span>
+    </div>
+    <div class="section-head">Server fleet · Staging · 12 servers</div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Server name</th>
+          <th>Status</th>
+          <th>Instance ID</th>
+          <th>Current image</th>
+          <th>Role</th>
+          <th>Contention</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>☐</td>
+          <td>stg-web-canary-01</td>
+          <td>FailingOver</td>
+          <td>i-0aaa</td>
+          <td>ami-old</td>
+          <td>Test allowlist</td>
+          <td><span class="mark">Clear</span></td>
+          <td><span class="btn">Progress</span></td>
+        </tr>
+        <tr>
+          <td>☐</td>
+          <td>stg-web-canary-02</td>
+          <td>Created</td>
+          <td>i-0bbb</td>
+          <td>ami-old</td>
+          <td>Test allowlist</td>
+          <td><span class="mark">Clear</span></td>
+          <td><span class="btn disabled">Wait (Verifying)</span></td>
+        </tr>
+        <tr>
+          <td>☐</td>
+          <td>stg-web-014</td>
+          <td>Created</td>
+          <td>i-0ccc</td>
+          <td>ami-old</td>
+          <td>Fleet</td>
+          <td><span class="mark">Clear</span></td>
+          <td><span class="btn disabled">Wait until Ready</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="legend">
+      <span><b>Test allowlist</b> — Tester may refresh these during Verifying</span>
+      <span><b>Fleet</b> — Starter only after Ready + rollout policy</span>
+      <span><b>Clear / Blocked</b> — platform start gates</span>
+    </div>
+    <div class="section-head">Held AMI candidates (not LatestAMI yet)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>AWS name</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Acumatica</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Windows_Server-2025-English-Full-Base-2026.10.08</td>
+          <td>major (2022 → 2025)</td>
+          <td>AwaitingAcumatica</td>
+          <td>Not recorded</td>
+          <td><span class="btn solid">Record Acumatica certification</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">Plan summary</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Plan ID</th>
+          <th>Env</th>
+          <th>AMI</th>
+          <th>Status</th>
+          <th>Mode</th>
+          <th>Verification</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>plan-stg-8841</td>
+          <td>Staging</td>
+          <td>ami-0abc123</td>
+          <td><span class="pill">Verifying</span></td>
+          <td>auto (after Ready)</td>
+          <td>1 / 2 allowlist running</td>
+          <td><span class="btn solid">Open</span></td>
+        </tr>
+        <tr>
+          <td>plan-dev-8830</td>
+          <td>DEV</td>
+          <td>ami-0abc123</td>
+          <td><span class="pill">Ready</span></td>
+          <td>auto · Running</td>
+          <td>Passed (2/2 + health)</td>
+          <td><span class="btn">Open</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

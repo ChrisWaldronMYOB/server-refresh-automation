@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Progress Panel</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <span class="btn">← Back</span>
+      <div class="title">Refreshing stg-web-canary-01</div>
+      <span>plan-stg-8841</span>
+      <div class="spacer"></div>
+      <span class="pill">Test target</span>
+    </div>
+    <div class="target-line">
+      <span>Target <b>stg-web-canary-01</b></span>
+      <span>i-0aaa → i-0new</span>
+      <span>Phase: <b>Verifying</b> (Tester, this environment)</span>
+      <div class="spacer"></div>
+      <span>Started 2026-10-08 22:10 UTC</span>
+    </div>
+    <div class="phase">
+      <b>Sites installing</b>
+      <div class="track"><div class="fill"></div></div>
+      <span>12 / 18</span>
+    </div>
+    <div class="stats">
+      <div><span>Migrated</span><b>12</b></div>
+      <div><span>Total</span><b>18</b></div>
+      <div><span>Failed</span><b>0</b></div>
+      <div><span>Elapsed</span><b>18m 32s</b></div>
+    </div>
+    <div class="sites">
+      <h2>Sites</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Site</th>
+            <th>Status</th>
+            <th>Install</th>
+            <th>Health check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>acme-stg</td>
+            <td>Active</td>
+            <td>Created</td>
+            <td>Pending, after CPU settle</td>
+          </tr>
+          <tr>
+            <td>beta-stg</td>
+            <td>Inactive</td>
+            <td>Created</td>
+            <td>Healthy</td>
+          </tr>
+          <tr>
+            <td>demo-stg</td>
+            <td>Active</td>
+            <td>Running</td>
+            <td>Waiting</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      Test acceptance for this target: source must reach Deleted, then all site health checks must pass.
+      Fleet Start remains disabled until the plan is Ready (or skipped by test policy in this env).
+    </div>
+    <div class="actions">
+      <span class="btn disabled">Retry failed</span>
+      <span class="hint">Enabled only when the target status is Failed</span>
+    </div>
+  </div>
+</body>
+</html>

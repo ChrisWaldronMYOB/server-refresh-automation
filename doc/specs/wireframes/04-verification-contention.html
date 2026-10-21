@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Verification In Contention</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <span class="btn">← Back</span>
+      <div class="title">Plan plan-stg-8841</div>
+      <div class="spacer"></div>
+      <span>Status: <b>In Contention</b> (test failed)</span>
+    </div>
+    <div class="meta">
+      <span>AMI <b>ami-0abc123</b></span>
+      <span>Environment: <b>Staging</b></span>
+      <span>Test policy: <b>DEV and Staging</b></span>
+      <span>Tester env: <b>Staging</b> (this plan)</span>
+    </div>
+    <div class="banner warn">
+      Test acceptance failed. Certify will not write Production LatestAMI for this AMI.
+      Rollout policy auto-start is suppressed. Default: no force-Ready.
+    </div>
+    <div class="section-head">Failed criteria</div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Criterion</th>
+          <th>Result</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Allowlist loadable</td>
+          <td>Pass</td>
+          <td>stg-web-canary-01, stg-web-canary-02</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Allowlist Clear within timeout</td>
+          <td>Pass</td>
+          <td>Both Clear</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Tester failover PUT (this env)</td>
+          <td>Pass</td>
+          <td>PUT Staging API isRefreshServer=true</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Source Deleted</td>
+          <td>Fail</td>
+          <td>stg-web-canary-02 FailingOverFailed (site install)</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Post-cutover site health</td>
+          <td>Not run</td>
+          <td>Skipped: refresh did not succeed</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">Allowlist results</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Server</th>
+          <th>Refresh</th>
+          <th>Health</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>stg-web-canary-01</td>
+          <td>Deleted</td>
+          <td>18 / 18 pass</td>
+          <td>Pass</td>
+        </tr>
+        <tr>
+          <td>stg-web-canary-02</td>
+          <td>FailingOverFailed</td>
+          <td>—</td>
+          <td><span class="mark">Fail</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">Audit (excerpt)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>UTC</th>
+          <th>Actor</th>
+          <th>Event</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>22:04</td>
+          <td>Certify Lambda</td>
+          <td>Wrote Staging LatestAMI ami-0abc123 (P1 after DEV Ready)</td>
+        </tr>
+        <tr>
+          <td>22:05</td>
+          <td>Detector</td>
+          <td>Opened plan Verifying (test policy includes Staging)</td>
+        </tr>
+        <tr>
+          <td>22:06</td>
+          <td>Tester</td>
+          <td>Started allowlist refresh in Staging</td>
+        </tr>
+        <tr>
+          <td>22:41</td>
+          <td>Tester</td>
+          <td>Marked In Contention — criterion 4 failed</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="actions">
+      <span class="btn solid">Retry verification</span>
+      <span class="btn">Reject / cancel plan</span>
+      <span class="btn disabled">Force Ready</span>
+      <span class="hint">Force Ready requires allowOverride and is audited; fail closed by default</span>
+    </div>
+  </div>
+</body>
+</html>

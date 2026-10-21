@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AMI Verification Campaign (Temporal)</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <span class="btn">← Back</span>
+      <div class="title">Verify ami-0def456</div>
+      <div class="spacer"></div>
+      <span>Status: <b>Campaign complete</b></span>
+    </div>
+    <div class="meta">
+      <span>Candidate AMI <b>ami-0def456</b></span>
+      <span>Received via SNS 2026-10-20</span>
+      <span>Environment: <b>Development</b></span>
+    </div>
+    <div class="banner">
+      Verification campaign <b>verify-ami-0def456</b> · 1 server · started immediately (Temporal workflow, no scheduling delay) · ran through the same Campaign Runner path as any rollout campaign.
+    </div>
+    <div class="section-head">Auto-selected server</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Server</th>
+          <th>Status before</th>
+          <th>Instance ID</th>
+          <th>Why this server</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>dev-web-canary-07</td>
+          <td>Created</td>
+          <td>i-0aaa900</td>
+          <td>Freshly created — no stale Copy_* state or prior refresh failures</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">Automated checklist (from the verification campaign's result)</div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Check</th>
+          <th>Result</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Source reached Deleted</td>
+          <td><span class="mark">Pass</span></td>
+          <td>Completed in 24m 10s</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Replacement ImageId matches candidate</td>
+          <td><span class="mark">Pass</span></td>
+          <td>i-0new900 → ami-0def456</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Lifecycle events clean</td>
+          <td><span class="mark">Pass</span></td>
+          <td>No FailoverFailed / DeleteServerFailed / HardFailed on this message id</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Site health checks</td>
+          <td><span class="mark">Pass</span></td>
+          <td>3 / 3 sites healthy</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">Manual step · not automatable</div>
+    <div class="note">
+      Run the applicable Development smoke or acceptance checks for the services hosted on dev-web-canary-07, then confirm below. This is the one verification step that generic health checks cannot stand in for.
+    </div>
+    <div class="policy-row">
+      <span>☐ I have run the applicable smoke/acceptance checks and they passed</span>
+      <div class="spacer"></div>
+      <span class="muted">Required before marking verified</span>
+    </div>
+    <div class="actions">
+      <span class="btn disabled">Mark ami-0def456 verified</span>
+      <span class="btn">Mark not verified…</span>
+      <span class="hint">Enabled once the smoke-check confirmation above is checked. No rollout campaign for this AMI can be enabled until this is set.</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Production plan — customer communications</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <span class="btn">← Back</span>
+      <div class="title">Plan plan-prd-9004</div>
+      <div class="spacer"></div>
+      <span>Status: <b>Scheduled</b></span>
+    </div>
+    <div class="meta">
+      <span>Environment: <b>Production</b></span>
+      <span>releaseType <b>major</b></span>
+      <span>Mode: <b>human</b></span>
+      <span>Window: <b>2026-10-12 02:00–04:00 UTC</b></span>
+    </div>
+    <div class="banner ok">
+      Schedule saved. Customer notices are queued. A failed notice does not delay Starter.
+    </div>
+    <div class="section-head">Scheduled servers · 2 selected</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Server</th>
+          <th>Sites</th>
+          <th>Customers</th>
+          <th>Contention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>prd-web-014</td>
+          <td>11</td>
+          <td>4</td>
+          <td><span class="mark">Clear</span></td>
+        </tr>
+        <tr>
+          <td>prd-web-015</td>
+          <td>6</td>
+          <td>2</td>
+          <td><span class="mark">Clear</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">Customer communications · 5 distinct customers · 4 sent · 1 action required</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Notice</th>
+          <th>State</th>
+          <th>Recipient</th>
+          <th>Last attempt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Example Books</td>
+          <td>Scheduled</td>
+          <td><span class="mark">Sent</span></td>
+          <td>a•••@example.com</td>
+          <td>2026-10-09 01:42 UTC</td>
+        </tr>
+        <tr>
+          <td>Example Retail</td>
+          <td>Scheduled</td>
+          <td><span class="mark">Sent</span></td>
+          <td>b•••@example.com</td>
+          <td>2026-10-09 01:42 UTC</td>
+        </tr>
+        <tr>
+          <td>Example Manufacturing</td>
+          <td>Scheduled</td>
+          <td><span class="mark">Action required</span></td>
+          <td>No contact returned</td>
+          <td>2026-10-09 01:42 UTC</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">
+      Impact preview (system template): planned Production maintenance, this customer's services only, support contact. No server names and no AMI id.
+    </div>
+    <div class="actions">
+      <span class="btn">Reschedule…</span>
+      <span class="btn">Cancel schedule</span>
+      <span class="btn solid">Retry failed notifications</span>
+      <span class="hint">Retry is authorised and audited. Starter is not waiting.</span>
+    </div>
+  </div>
+</body>
+</html>

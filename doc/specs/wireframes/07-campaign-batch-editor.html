@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Campaign Detail — Batch Groups</title>
+  <link rel="stylesheet" href="wireframe.css">
+</head>
+<body>
+  <div class="screen" id="screen">
+    <div class="top">
+      <span class="btn">← Back</span>
+      <div class="title">campaign-stg-2026w43</div>
+      <div class="spacer"></div>
+      <span>Enabled: <b>Yes</b></span>
+    </div>
+    <div class="meta">
+      <span>AMI <b>ami-0abc123</b> (immutable)</span>
+      <span>Environment: <b>Staging</b></span>
+      <span>amiVerified: <b>Yes</b></span>
+      <span class="muted">Verified 2026-10-18 · see verification runbook record</span>
+    </div>
+    <div class="banner">
+      Batches below were auto-generated from 42 detected candidates, chunked mechanically into groups of 5 (no attribute-based grouping). Edit server lists or group settings below before enabling a schedule.
+    </div>
+    <div class="section-head">Batch groups</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Group</th>
+          <th>Schedule</th>
+          <th>Max servers / batch</th>
+          <th>Retry limit</th>
+          <th>Batches</th>
+          <th>Enabled</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>wave-a</td>
+          <td>cron(0 2 * * ? *) Australia/Sydney</td>
+          <td><span class="control">5</span></td>
+          <td><span class="control">1</span></td>
+          <td>4</td>
+          <td>☑</td>
+          <td><span class="btn solid">Edit servers</span></td>
+        </tr>
+        <tr>
+          <td>wave-b</td>
+          <td>cron(0 2 * * ? *) Australia/Sydney, +1 day</td>
+          <td><span class="control">5</span></td>
+          <td><span class="control">1</span></td>
+          <td>4</td>
+          <td>☑</td>
+          <td><span class="btn">Edit servers</span></td>
+        </tr>
+        <tr>
+          <td>wave-c</td>
+          <td>Not scheduled</td>
+          <td><span class="control">5</span></td>
+          <td><span class="control">1</span></td>
+          <td>1</td>
+          <td>☐</td>
+          <td><span class="btn">Edit servers</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="section-head">wave-a · batch-001 · 5 servers</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Server</th>
+          <th>Instance ID</th>
+          <th>Current image</th>
+          <th>Progress</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>stg-web-014</td>
+          <td>i-0ccc111</td>
+          <td>ami-old999</td>
+          <td><span class="mark">succeeded</span></td>
+          <td><span class="btn disabled">Remove</span></td>
+        </tr>
+        <tr>
+          <td>stg-web-015</td>
+          <td>i-0ccc112</td>
+          <td>ami-old999</td>
+          <td><span class="mark">failed</span> (TimedOut)</td>
+          <td><span class="btn">Remove</span></td>
+        </tr>
+        <tr>
+          <td>stg-web-017</td>
+          <td>i-0ccc114</td>
+          <td>ami-old999</td>
+          <td>pending</td>
+          <td><span class="btn">Remove</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="actions">
+      <span class="field">Add server <span class="control wide">Search detected candidates…</span></span>
+      <div class="spacer"></div>
+      <span class="btn">Save changes</span>
+      <span class="btn solid">Save and enable schedule</span>
+      <span class="hint">Any operator with UI access may edit and schedule — no additional approval gate</span>
+    </div>
+  </div>
+</body>
+</html>
